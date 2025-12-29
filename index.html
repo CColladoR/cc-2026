@@ -1,9 +1,9 @@
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="antialiased">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Christian Collado | Periodista Tecnológico</title>
     
     <!-- Metaetiquetas SEO -->
@@ -26,12 +26,32 @@
     <meta property="twitter:image" content="https://raw.githubusercontent.com/CColladoR/profilepic/main/christian.jpg">
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <script>
+        // Initialize theme before page render to avoid flash
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --scroll-y: 0;
+        }
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 2rem;
+            text-rendering: optimizeLegibility;
+            -webkit-tap-highlight-color: transparent;
         }
         body {
             font-family: 'Inter', sans-serif;
@@ -39,46 +59,52 @@
             color: #111111;
             transition: background-color 0.5s ease, color 0.5s ease;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-view-smoothing: grayscale;
+            -webkit-overflow-scrolling: touch;
         }
         
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: #050505;
-                color: #f0f0f0;
-            }
+        .dark body {
+            background-color: #050505;
+            color: #f0f0f0;
         }
 
+        /* Enhanced Liquid Glass Effect */
         .liquid-glass {
-            background: rgba(255, 255, 255, 0.35);
-            backdrop-filter: blur(24px) saturate(210%);
-            -webkit-backdrop-filter: blur(24px) saturate(210%);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.22);
+            backdrop-filter: blur(48px) saturate(180%);
+            -webkit-backdrop-filter: blur(48px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.5);
             box-shadow: 
-                0 4px 24px -1px rgba(0, 0, 0, 0.03),
-                0 10px 40px -10px rgba(0, 0, 0, 0.05);
+                0 4px 24px -1px rgba(0, 0, 0, 0.02),
+                0 10px 40px -10px rgba(0, 0, 0, 0.04),
+                inset 0 0 1px 1px rgba(255, 255, 255, 0.4);
+            will-change: backdrop-filter, transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            perspective: 1000px;
         }
 
-        @media (prefers-color-scheme: dark) {
-            .liquid-glass {
-                background: rgba(15, 15, 18, 0.5);
-                border: 1px solid rgba(255, 255, 255, 0.05);
-                box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.2);
-            }
+        .dark .liquid-glass {
+            background: rgba(10, 10, 12, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 
+                0 10px 30px -10px rgba(0, 0, 0, 0.5),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.02);
         }
 
         .mesh-gradient {
             background: radial-gradient(at 0% 0%, hsla(253,16%,95%,1) 0, transparent 50%), 
                         radial-gradient(at 100% 0%, hsla(225,39%,90%,0.4) 0, transparent 50%),
                         radial-gradient(at 50% 100%, hsla(339,49%,95%,0.3) 0, transparent 50%);
+            background-attachment: fixed;
         }
 
-        @media (prefers-color-scheme: dark) {
-            .mesh-gradient {
-                background: radial-gradient(at 0% 0%, hsla(253,30%,10%,1) 0, transparent 50%), 
-                            radial-gradient(at 100% 0%, hsla(225,40%,8%,0.4) 0, transparent 50%),
-                            radial-gradient(at 50% 100%, hsla(339,50%,12%,0.3) 0, transparent 50%);
-                background-color: #050505;
-            }
+        .dark .mesh-gradient {
+            background: radial-gradient(at 0% 0%, hsla(253,30%,10%,1) 0, transparent 50%), 
+                        radial-gradient(at 100% 0%, hsla(225,40%,8%,0.4) 0, transparent 50%),
+                        radial-gradient(at 50% 100%, hsla(339,50%,12%,0.3) 0, transparent 50%);
+            background-color: #050505;
         }
 
         .liquid-aura {
@@ -90,18 +116,21 @@
             filter: blur(60px);
             z-index: -1;
             animation: float 20s infinite alternate ease-in-out;
+            will-change: transform;
+            pointer-events: none;
+            transform: translateZ(0);
         }
 
-        @media (prefers-color-scheme: dark) {
-            .liquid-aura {
-                background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 70%);
-            }
+        .dark .liquid-aura {
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 70%);
         }
 
         @keyframes float {
-            0% { transform: translate(-10%, -10%) scale(1); }
-            100% { transform: translate(10%, 10%) scale(1.1); }
+            0% { transform: translate3d(-10%, -10%, 0) scale(1); }
+            100% { transform: translate3d(10%, 10%, 0) scale(1.1); }
         }
+
+        /* Scrollbar Utilities */
         .hide-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -109,38 +138,44 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
-        .reveal-text {
-            animation: reveal 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-        }
-        @keyframes reveal {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
         
-        @keyframes title-reveal {
-            0% { 
-                opacity: 0; 
-                transform: translateY(24px); 
-                filter: blur(8px);
-            }
-            100% { 
-                opacity: 1; 
-                transform: translateY(0); 
-                filter: blur(0);
-            }
-        }
-        .title-reveal {
-            opacity: 0;
-            animation: title-reveal 1.2s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
-            animation-delay: 0.2s;
+        .snap-x {
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            will-change: scroll-position;
         }
 
-        .animate-bounce-slow {
-            animation: bounce-slow 4s infinite ease-in-out;
+        /* Performance Optimized Reveal Animations */
+        .reveal-text {
+            animation: reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            will-change: transform, opacity;
+            backface-visibility: hidden;
+            transform: translate3d(0, 20px, 0);
+            opacity: 0;
         }
-        @keyframes bounce-slow {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        @keyframes reveal {
+            to { opacity: 1; transform: translate3d(0, 0, 0); }
+        }
+        
+        .title-reveal {
+            opacity: 0;
+            animation: title-reveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            animation-delay: 0.1s;
+            will-change: transform, opacity, filter;
+            backface-visibility: hidden;
+        }
+        @keyframes title-reveal {
+            from { 
+                opacity: 0; 
+                transform: translate3d(0, 24px, 0); 
+                filter: blur(10px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translate3d(0, 0, 0); 
+                filter: blur(0);
+            }
         }
 
         /* Cinematic Mask for Image */
@@ -153,16 +188,22 @@
             box-shadow: 
                 0 0 0 1px rgba(255, 255, 255, 0.4),
                 inset 0 0 20px rgba(255, 255, 255, 0.2),
-                0 30px 60px -12px rgba(30, 58, 138, 0.25); /* Accent blue from suit */
+                0 20px 40px -12px rgba(30, 58, 138, 0.15);
+            will-change: box-shadow;
+            transform: translateZ(0);
         }
 
-        @media (prefers-color-scheme: dark) {
-            .liquid-border-glow {
-                box-shadow: 
-                    0 0 0 1px rgba(255, 255, 255, 0.05),
-                    inset 0 0 20px rgba(255, 255, 255, 0.02),
-                    0 30px 60px -12px rgba(0, 0, 0, 0.8);
-            }
+        .dark .liquid-border-glow {
+            box-shadow: 
+                0 0 0 1px rgba(255, 255, 255, 0.1),
+                inset 0 0 20px rgba(255, 255, 255, 0.05),
+                0 20px 40px -20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Content Visibility optimization for mobile scroll */
+        .cv-auto {
+            content-visibility: auto;
+            contain-intrinsic-size: 1px 500px;
         }
     </style>
 <script type="importmap">
@@ -183,5 +224,18 @@
     <div id="root"></div>
     <!-- Punto de entrada para Vite -->
     <script type="module" src="/index.tsx"></script>
+    <script>
+        // High-performance scroll listener with throttled Raf
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    document.documentElement.style.setProperty('--scroll-y', window.scrollY + 'px');
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
+    </script>
 </body>
 </html>

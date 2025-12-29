@@ -73,12 +73,12 @@ export const ArticleCarousel: React.FC = () => {
 
       <div 
         ref={scrollRef}
-        className="flex gap-8 overflow-x-auto hide-scrollbar px-2 pb-16 snap-x snap-mandatory"
+        className="flex gap-6 md:gap-8 overflow-x-auto hide-scrollbar px-2 pb-16 snap-x snap-mandatory scroll-px-2"
       >
-        {articles.map((article, idx) => (
+        {articles.map((article) => (
           <article 
             key={article.guid}
-            className="flex-shrink-0 w-[88vw] md:w-[480px] snap-start"
+            className="flex-shrink-0 w-[85vw] md:w-[480px] snap-center md:snap-start"
           >
             <a 
               href={article.link}
@@ -86,7 +86,7 @@ export const ArticleCarousel: React.FC = () => {
               rel="noopener noreferrer"
               className="block group/card relative"
             >
-              <div className="relative aspect-[16/10] rounded-[2.5rem] overflow-hidden bg-gray-100 dark:bg-zinc-900 shadow-2xl shadow-black/5 border border-black/[0.03] dark:border-white/[0.03]">
+              <div className="relative aspect-[16/10] rounded-[2.5rem] overflow-hidden bg-gray-100 dark:bg-zinc-900 shadow-2xl shadow-black/5 border border-black/[0.03] dark:border-white/[0.03] will-change-transform transform-gpu">
                 <img 
                   src={article.thumbnail} 
                   alt={article.title}
@@ -114,7 +114,7 @@ export const ArticleCarousel: React.FC = () => {
                   <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-black/30 dark:text-white/30">Editorial</span>
                 </div>
                 
-                <h3 className="text-2xl font-bold text-black dark:text-white leading-[1.2] mb-6 group-hover/card:text-indigo-600 dark:group-hover/card:text-indigo-400 transition-colors duration-300 line-clamp-2">
+                <h3 className="text-2xl font-extrabold text-black dark:text-white leading-[1.4] mb-6 group-hover/card:text-indigo-600 dark:group-hover/card:text-indigo-400 transition-colors duration-300 line-clamp-2">
                   {article.title}
                 </h3>
                 
@@ -129,9 +129,9 @@ export const ArticleCarousel: React.FC = () => {
       </div>
 
       <div className="flex justify-center mt-4 md:hidden">
-        <div className="flex gap-1.5">
+        <div className="flex gap-2">
           {articles.map((_, i) => (
-            <div key={i} className="w-1.5 h-1.5 rounded-full bg-black/10 dark:bg-white/10"></div>
+            <div key={i} className="w-1.5 h-1.5 rounded-full bg-black/10 dark:bg-white/10 transition-colors"></div>
           ))}
         </div>
       </div>
