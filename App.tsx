@@ -124,8 +124,11 @@ const App: React.FC = () => {
         {/* Right Section: Photo & Stats */}
         <aside className="lg:col-span-5 flex flex-col gap-10 cv-auto">
           <div className="relative group reveal-text" style={{ animationDelay: '0.4s' }}>
-             <div className="absolute -inset-8 bg-blue-900/10 dark:bg-indigo-500/10 rounded-[4rem] blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
-             <div className="absolute -inset-1 bg-gradient-to-tr from-white/40 via-blue-200/20 to-indigo-200/20 dark:from-white/5 dark:via-indigo-500/5 dark:to-blue-500/5 rounded-[3rem] blur-sm opacity-50"></div>
+             {/* Dynamic background glow */}
+             <div className="absolute -inset-10 bg-indigo-600/5 dark:bg-indigo-500/10 rounded-[5rem] blur-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+             
+             {/* Sub-border glow */}
+             <div className="absolute -inset-0.5 bg-gradient-to-tr from-black/5 to-white/10 dark:from-white/5 dark:to-white/10 rounded-[2.6rem] blur-[2px] opacity-30"></div>
              
              <div className="relative aspect-[4/5] md:aspect-square lg:aspect-[4/5] overflow-hidden rounded-[2.5rem] liquid-border-glow border border-white/60 dark:border-white/10 bg-white/5 backdrop-blur-md">
                <img 
@@ -145,35 +148,36 @@ const App: React.FC = () => {
                    }
                  }}
                />
-               <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 via-transparent to-transparent dark:from-black/60 opacity-60 mix-blend-overlay group-hover:opacity-30 transition-opacity duration-1000"></div>
-               <div className="absolute inset-0 ring-1 ring-inset ring-white/30 dark:ring-white/10 rounded-[2.5rem]"></div>
+               {/* Subtle Glass Overlays instead of deep gradients */}
+               <div className="absolute inset-0 bg-gradient-to-t from-white/5 to-transparent pointer-events-none"></div>
+               <div className="absolute inset-0 ring-1 ring-inset ring-white/20 dark:ring-white/5 rounded-[2.5rem]"></div>
              </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
-            <LiquidCard className="relative overflow-hidden group py-16 flex flex-col items-center justify-center text-center">
+            <LiquidCard className="relative overflow-hidden group py-16 flex flex-col items-center justify-center text-center hover:-translate-y-2 hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-500">
               <div className="relative z-10 flex flex-col items-center">
-                <div className="text-7xl md:text-8xl lg:text-9xl font-black text-black dark:text-white mb-4 tracking-[ -0.05em] leading-none transition-all duration-700 group-hover:scale-105">
+                <div className="text-7xl md:text-8xl lg:text-9xl font-black text-black dark:text-white mb-4 tracking-[-0.05em] leading-none transition-all duration-700 group-hover:scale-110 group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
                   +12k
                 </div>
-                <h3 className="text-black/40 dark:text-white/40 text-[11px] uppercase tracking-[0.4em] font-black mb-6">Artículos Publicados</h3>
-                <div className="w-16 h-[3px] bg-indigo-600 dark:bg-indigo-400 rounded-full opacity-20 group-hover:opacity-100 group-hover:w-24 transition-all duration-700"></div>
+                <h3 className="text-black/40 dark:text-white/40 text-[11px] uppercase tracking-[0.4em] font-black mb-6 transition-colors duration-500 group-hover:text-black dark:group-hover:text-white">Artículos Publicados</h3>
+                <div className="w-12 h-[3px] bg-indigo-600 dark:bg-indigo-400 rounded-full opacity-20 group-hover:opacity-100 group-hover:w-24 group-hover:scale-x-110 transition-all duration-700 ease-out"></div>
               </div>
             </LiquidCard>
 
-            <LiquidCard className="p-10 space-y-16">
+            <LiquidCard className="p-10 space-y-16 hover:-translate-y-1 hover:shadow-xl transition-all duration-500">
               <div>
                 <h3 className="text-black/30 dark:text-white/30 text-[10px] uppercase tracking-[0.3em] font-black mb-8">Especialización</h3>
                 <div className="flex flex-wrap gap-2">
                   {['Android', 'Tecnología', 'Reviews', 'Editorial', 'IA'].map(tag => (
-                    <span key={tag} className="px-3 py-1.5 rounded-full border border-black/5 dark:border-white/5 bg-white dark:bg-black/40 text-[10px] font-bold uppercase tracking-wider text-black/60 dark:text-white/60">
+                    <span key={tag} className="px-3 py-1.5 rounded-full border border-black/5 dark:border-white/5 bg-white dark:bg-black/40 text-[10px] font-bold uppercase tracking-wider text-black/60 dark:text-white/60 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 dark:hover:bg-indigo-400 dark:hover:text-black dark:hover:border-indigo-400 transition-all duration-300 cursor-default">
                       {tag}
                     </span>
                   ))}
                 </div>
               </div>
 
-              {/* Timeline Trajectory Section - Añadido padding superior para compensar la falta de línea divisoria */}
+              {/* Timeline Trajectory Section */}
               <div className="pt-12">
                 <h3 className="text-black/30 dark:text-white/30 text-[10px] uppercase tracking-[0.3em] font-black mb-10">Trayectoria</h3>
                 

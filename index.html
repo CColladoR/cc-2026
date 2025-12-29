@@ -60,7 +60,7 @@
             transition: background-color 0.5s ease, color 0.5s ease;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            -moz-osx-view-smoothing: grayscale;
             -webkit-overflow-scrolling: touch;
         }
         
@@ -188,16 +188,16 @@
             box-shadow: 
                 0 0 0 1px rgba(255, 255, 255, 0.4),
                 inset 0 0 20px rgba(255, 255, 255, 0.2),
-                0 30px 60px -12px rgba(30, 58, 138, 0.25);
+                0 20px 40px -12px rgba(30, 58, 138, 0.15);
             will-change: box-shadow;
             transform: translateZ(0);
         }
 
         .dark .liquid-border-glow {
             box-shadow: 
-                0 0 0 1px rgba(255, 255, 255, 0.05),
-                inset 0 0 20px rgba(255, 255, 255, 0.02),
-                0 30px 60px -12px rgba(0, 0, 0, 0.8);
+                0 0 0 1px rgba(255, 255, 255, 0.1),
+                inset 0 0 20px rgba(255, 255, 255, 0.05),
+                0 20px 40px -20px rgba(0, 0, 0, 0.5);
         }
 
         /* Content Visibility optimization for mobile scroll */

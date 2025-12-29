@@ -1,11 +1,12 @@
 
 import React from 'react';
-import { Twitter, Mail, AtSign, Instagram, Music2 } from 'lucide-react';
+import { Twitter, Mail, AtSign, Instagram, Music2, Linkedin } from 'lucide-react';
 
 export const SocialLinks: React.FC = () => {
   const socials = [
     { name: 'Instagram', icon: <Instagram size={18} />, url: 'https://instagram.com/ccollado_r', color: 'hover:bg-pink-50 hover:text-pink-600 dark:hover:bg-pink-500/20 dark:hover:text-pink-300' },
     { name: 'TikTok', icon: <Music2 size={18} />, url: 'https://www.tiktok.com/@ccr1o', color: 'hover:bg-slate-100 hover:text-black dark:hover:bg-white/20 dark:hover:text-white' },
+    { name: 'LinkedIn', icon: <Linkedin size={18} />, url: 'https://www.linkedin.com/in/christian-collado/', color: 'hover:bg-blue-50 hover:text-blue-600 dark:hover:bg-blue-500/20 dark:hover:text-blue-300' },
     { name: 'X', icon: <Twitter size={18} />, url: 'https://x.com/ccollado_r', color: 'hover:bg-gray-100 hover:text-black dark:hover:bg-white/20 dark:hover:text-white' },
     { name: 'Threads', icon: <AtSign size={18} />, url: 'https://www.threads.com/@ccollado_r', color: 'hover:bg-purple-50 hover:text-purple-600 dark:hover:bg-purple-500/20 dark:hover:text-purple-300' },
     { name: 'Email', icon: <Mail size={18} />, url: 'mailto:christian@difoosion.com', color: 'hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-500/20 dark:hover:text-red-300' },
