@@ -105,12 +105,13 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        <aside className="lg:col-span-5 flex flex-col gap-8">
+        <aside className="lg:col-span-5 flex flex-col gap-8 reveal-text" style={{ animationDelay: '0.1s' }}>
           <div className="relative rounded-[2.5rem] overflow-hidden bg-white dark:bg-white/5 border border-black/5 dark:border-white/5 aspect-[4/5] transform-gpu shadow-xl shadow-black/[0.02]">
             <img 
               src={profileImageUrl} 
               alt="Retrato de Christian Collado" 
               className="w-full h-full object-cover image-soft-mask"
+              loading="eager"
             />
           </div>
 

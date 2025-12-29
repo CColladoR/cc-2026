@@ -5,7 +5,7 @@ import { Camera, Download, Layers, Smartphone, Monitor, CheckCircle2 } from 'luc
 
 export const PresetsSection: React.FC = () => {
   return (
-    <section className="mt-16 md:mt-32 cv-auto relative group">
+    <section className="mt-16 md:mt-32 relative group">
       <div className="reveal-text">
         <div className="flex items-center gap-3 mb-4 px-2">
           <span className="w-8 h-px bg-indigo-600/30 dark:bg-indigo-400/30" aria-hidden="true"></span>
@@ -29,7 +29,7 @@ export const PresetsSection: React.FC = () => {
             <div className="absolute bottom-6 left-6 right-6 md:bottom-10 md:left-10 md:right-10">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10 mb-4">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" aria-hidden="true"></span>
-                <span className="text-[8px] font-black uppercase tracking-widest text-white/90">Pack Actualizado 2025</span>
+                <span className="text-[8px] font-black uppercase tracking-widest text-white/90">Pack Actualizado 2026</span>
               </div>
               <div className="flex items-end gap-3">
                 <span className="text-5xl md:text-6xl font-black text-white leading-none">5€</span>
@@ -44,15 +44,15 @@ export const PresetsSection: React.FC = () => {
             </h3>
             
             <p className="text-black/70 dark:text-white/70 text-base md:text-lg leading-relaxed font-light mb-8 max-w-xl">
-              Mi flujo de trabajo real comprimido en 5 ajustes maestros para Adobe Lightroom. El estilo visual que define mis reviews y redes sociales, ahora a tu alcance.
+              Mi flujo de trabajo comprimido en 5 ajustes prestablecidos para Adobe Lightroom. El estilo visual que define mis reviews y redes sociales, ahora a tu alcance.
             </p>
 
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10" aria-label="Características del pack">
               {[
-                "Optimizado para tonos de piel",
+                "Todo tipo de fotografía",
                 "Texturas nítidas en gadgets",
                 "Compatible con móvil y PC",
-                "Instalación en un click"
+                "Instalación sencilla"
               ].map((feature, i) => (
                 <li key={i} className="flex items-center gap-3">
                   <CheckCircle2 size={16} className="text-indigo-600 dark:text-indigo-400 flex-shrink-0" aria-hidden="true" />

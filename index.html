@@ -56,7 +56,7 @@
         }
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #ffffff; /* Blanco puro para máxima claridad */
+            background-color: #ffffff;
             color: #111111;
             transition: background-color 0.5s ease, color 0.5s ease;
             overflow-x: hidden;
@@ -72,14 +72,14 @@
 
         /* High-Key Liquid Glass Effect for Light Mode */
         .liquid-glass {
-            background: rgba(255, 255, 255, 0.98); /* Prácticamente sólido para legibilidad perfecta */
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(0, 0, 0, 0.03); /* Borde casi invisible */
+            border: 1px solid rgba(0, 0, 0, 0.03);
             box-shadow: 
                 0 4px 20px -2px rgba(0, 0, 0, 0.02),
                 0 12px 30px -10px rgba(0, 0, 0, 0.04);
-            will-change: backdrop-filter, transform;
+            will-change: transform;
             transform: translateZ(0);
             backface-visibility: hidden;
         }
@@ -93,7 +93,7 @@
         }
 
         .mesh-gradient {
-            background: #ffffff; /* Eliminamos el gradiente mesh en modo claro */
+            background: #ffffff;
         }
 
         .dark .mesh-gradient {
@@ -107,13 +107,14 @@
             position: absolute;
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.02) 0%, transparent 70%); /* Casi invisible */
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.02) 0%, transparent 70%);
             border-radius: 50%;
             filter: blur(80px);
             z-index: -1;
             animation: float 25s infinite alternate ease-in-out;
             will-change: transform;
             pointer-events: none;
+            transform: translateZ(0);
         }
 
         .dark .liquid-aura {
@@ -125,26 +126,30 @@
             100% { transform: translate3d(2%, 2%, 0); }
         }
 
-        /* Cinematic Mask for Image */
         .image-soft-mask {
             mask-image: radial-gradient(circle at 50% 40%, black 75%, transparent 100%);
             -webkit-mask-image: radial-gradient(circle at 50% 40%, black 75%, transparent 100%);
         }
         
-        /* Reveal Animations */
         .reveal-text {
             animation: reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
             will-change: transform, opacity;
-            transform: translateY(20px);
+            transform: translateY(15px);
             opacity: 0;
         }
         @keyframes reveal {
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Custom Scrollbars */
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Smooth scroll optimization */
+        @media (prefers-reduced-motion: no-preference) {
+          :root {
+            scroll-behavior: smooth;
+          }
+        }
     </style>
 <script type="importmap">
 {
@@ -164,11 +169,15 @@
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
     <script>
+        // Performance optimized scroll listener
         let ticking = false;
+        let lastScrollY = window.scrollY;
+
         window.addEventListener('scroll', () => {
+            lastScrollY = window.scrollY;
             if (!ticking) {
                 window.requestAnimationFrame(() => {
-                    document.documentElement.style.setProperty('--scroll-y', window.scrollY + 'px');
+                    document.documentElement.style.setProperty('--scroll-y', lastScrollY + 'px');
                     ticking = false;
                 });
                 ticking = true;
