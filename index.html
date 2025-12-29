@@ -37,8 +37,17 @@
             font-family: 'Inter', sans-serif;
             background-color: #fafafa;
             color: #111111;
+            transition: background-color 0.5s ease, color 0.5s ease;
             overflow-x: hidden;
         }
+        
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #050505;
+                color: #f0f0f0;
+            }
+        }
+
         .liquid-glass {
             background: rgba(255, 255, 255, 0.35);
             backdrop-filter: blur(24px) saturate(210%);
@@ -48,11 +57,30 @@
                 0 4px 24px -1px rgba(0, 0, 0, 0.03),
                 0 10px 40px -10px rgba(0, 0, 0, 0.05);
         }
+
+        @media (prefers-color-scheme: dark) {
+            .liquid-glass {
+                background: rgba(15, 15, 18, 0.5);
+                border: 1px solid rgba(255, 255, 255, 0.05);
+                box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.2);
+            }
+        }
+
         .mesh-gradient {
             background: radial-gradient(at 0% 0%, hsla(253,16%,95%,1) 0, transparent 50%), 
                         radial-gradient(at 100% 0%, hsla(225,39%,90%,0.4) 0, transparent 50%),
                         radial-gradient(at 50% 100%, hsla(339,49%,95%,0.3) 0, transparent 50%);
         }
+
+        @media (prefers-color-scheme: dark) {
+            .mesh-gradient {
+                background: radial-gradient(at 0% 0%, hsla(253,30%,10%,1) 0, transparent 50%), 
+                            radial-gradient(at 100% 0%, hsla(225,40%,8%,0.4) 0, transparent 50%),
+                            radial-gradient(at 50% 100%, hsla(339,50%,12%,0.3) 0, transparent 50%);
+                background-color: #050505;
+            }
+        }
+
         .liquid-aura {
             position: absolute;
             width: 600px;
@@ -63,6 +91,13 @@
             z-index: -1;
             animation: float 20s infinite alternate ease-in-out;
         }
+
+        @media (prefers-color-scheme: dark) {
+            .liquid-aura {
+                background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 70%);
+            }
+        }
+
         @keyframes float {
             0% { transform: translate(-10%, -10%) scale(1); }
             100% { transform: translate(10%, 10%) scale(1.1); }
@@ -119,6 +154,15 @@
                 0 0 0 1px rgba(255, 255, 255, 0.4),
                 inset 0 0 20px rgba(255, 255, 255, 0.2),
                 0 30px 60px -12px rgba(30, 58, 138, 0.25); /* Accent blue from suit */
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .liquid-border-glow {
+                box-shadow: 
+                    0 0 0 1px rgba(255, 255, 255, 0.05),
+                    inset 0 0 20px rgba(255, 255, 255, 0.02),
+                    0 30px 60px -12px rgba(0, 0, 0, 0.8);
+            }
         }
     </style>
 <script type="importmap">

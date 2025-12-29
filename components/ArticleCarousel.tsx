@@ -32,7 +32,7 @@ export const ArticleCarousel: React.FC = () => {
       <div className="w-full h-96 flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <div className="w-12 h-12 border-2 border-indigo-600/10 border-t-indigo-600 rounded-full animate-spin"></div>
-          <span className="text-[10px] font-black uppercase tracking-[0.3em] text-black/20">Cargando</span>
+          <span className="text-[10px] font-black uppercase tracking-[0.3em] text-black/20 dark:text-white/20">Cargando</span>
         </div>
       </div>
     );
@@ -45,11 +45,11 @@ export const ArticleCarousel: React.FC = () => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 px-2 gap-8">
         <div className="reveal-text">
           <div className="flex items-center gap-3 mb-4">
-            <span className="w-8 h-px bg-indigo-600/30"></span>
-            <h2 className="text-[10px] uppercase tracking-[0.5em] text-indigo-600 font-black">Actualidad</h2>
+            <span className="w-8 h-px bg-indigo-600/30 dark:bg-indigo-400/30"></span>
+            <h2 className="text-[10px] uppercase tracking-[0.5em] text-indigo-600 dark:text-indigo-400 font-black">Actualidad</h2>
           </div>
-          <p className="text-4xl md:text-5xl font-black text-black tracking-tighter leading-none">
-            Últimas firmas <span className="text-black/20 italic font-light font-serif">en Andro4all</span>
+          <p className="text-4xl md:text-5xl font-black text-black dark:text-white tracking-tighter leading-none">
+            Últimas firmas <span className="text-black/20 dark:text-white/20 italic font-light font-serif">en Andro4all</span>
           </p>
         </div>
         
@@ -57,14 +57,14 @@ export const ArticleCarousel: React.FC = () => {
           <button 
             onClick={() => scroll('left')}
             aria-label="Anterior"
-            className="group/btn p-5 rounded-2xl border border-black/5 bg-white shadow-sm hover:bg-black hover:text-white hover:scale-105 hover:border-black/10 transition-all duration-500 active:scale-95"
+            className="group/btn p-5 rounded-2xl border border-black/5 dark:border-white/5 bg-white dark:bg-black shadow-sm hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black hover:scale-105 hover:border-black/10 transition-all duration-500 active:scale-95"
           >
             <ChevronLeft size={20} className="group-hover/btn:-translate-x-1 transition-transform" />
           </button>
           <button 
             onClick={() => scroll('right')}
             aria-label="Siguiente"
-            className="group/btn p-5 rounded-2xl border border-black/5 bg-white shadow-sm hover:bg-black hover:text-white hover:scale-105 hover:border-black/10 transition-all duration-500 active:scale-95"
+            className="group/btn p-5 rounded-2xl border border-black/5 dark:border-white/5 bg-white dark:bg-black shadow-sm hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black hover:scale-105 hover:border-black/10 transition-all duration-500 active:scale-95"
           >
             <ChevronRight size={20} className="group-hover/btn:translate-x-1 transition-transform" />
           </button>
@@ -86,8 +86,7 @@ export const ArticleCarousel: React.FC = () => {
               rel="noopener noreferrer"
               className="block group/card relative"
             >
-              {/* Image Container with high-end effects */}
-              <div className="relative aspect-[16/10] rounded-[2.5rem] overflow-hidden bg-gray-100 shadow-2xl shadow-black/5 border border-black/[0.03]">
+              <div className="relative aspect-[16/10] rounded-[2.5rem] overflow-hidden bg-gray-100 dark:bg-zinc-900 shadow-2xl shadow-black/5 border border-black/[0.03] dark:border-white/[0.03]">
                 <img 
                   src={article.thumbnail} 
                   alt={article.title}
@@ -95,35 +94,32 @@ export const ArticleCarousel: React.FC = () => {
                   className="w-full h-full object-cover transition-all duration-[1.5s] ease-out group-hover/card:scale-110 group-hover/card:rotate-1"
                 />
                 
-                {/* Overlay on hover */}
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/card:opacity-100 transition-opacity duration-700 flex items-center justify-center backdrop-blur-[2px]">
                    <div className="bg-white p-4 rounded-full scale-50 opacity-0 group-hover/card:scale-100 group-hover/card:opacity-100 transition-all duration-500 delay-100">
                      <ArrowUpRight size={24} className="text-black" />
                    </div>
                 </div>
 
-                {/* Date Badge */}
-                <div className="absolute top-6 left-6 px-4 py-2 bg-white/90 backdrop-blur-md rounded-xl shadow-lg border border-black/5">
-                  <span className="text-[10px] font-black tracking-widest text-black uppercase">
+                <div className="absolute top-6 left-6 px-4 py-2 bg-white/90 dark:bg-black/80 backdrop-blur-md rounded-xl shadow-lg border border-black/5 dark:border-white/5">
+                  <span className="text-[10px] font-black tracking-widest text-black dark:text-white uppercase">
                     {new Date(article.pubDate).toLocaleDateString('es-ES', { day: '2-digit', month: 'short' })}
                   </span>
                 </div>
               </div>
 
-              {/* Content below image */}
               <div className="mt-8 px-2">
                 <div className="flex items-center gap-2 mb-4">
-                  <span className="text-[9px] font-black uppercase tracking-[0.2em] text-indigo-600">Christian Collado</span>
-                  <span className="w-1 h-1 bg-black/10 rounded-full"></span>
-                  <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-black/30">Editorial</span>
+                  <span className="text-[9px] font-black uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400">Christian Collado</span>
+                  <span className="w-1 h-1 bg-black/10 dark:bg-white/10 rounded-full"></span>
+                  <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-black/30 dark:text-white/30">Editorial</span>
                 </div>
                 
-                <h3 className="text-2xl font-bold text-black leading-[1.2] mb-6 group-hover/card:text-indigo-600 transition-colors duration-300 line-clamp-2">
+                <h3 className="text-2xl font-bold text-black dark:text-white leading-[1.2] mb-6 group-hover/card:text-indigo-600 dark:group-hover/card:text-indigo-400 transition-colors duration-300 line-clamp-2">
                   {article.title}
                 </h3>
                 
-                <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.3em] text-black/20 group-hover/card:text-black transition-colors duration-500">
-                  <div className="w-8 h-[2px] bg-indigo-600/20 group-hover/card:w-12 group-hover/card:bg-indigo-600 transition-all duration-500"></div>
+                <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.3em] text-black/20 dark:text-white/20 group-hover/card:text-black dark:group-hover/card:text-white transition-colors duration-500">
+                  <div className="w-8 h-[2px] bg-indigo-600/20 dark:bg-indigo-400/20 group-hover/card:w-12 group-hover/card:bg-indigo-600 dark:group-hover/card:bg-indigo-400 transition-all duration-500"></div>
                   <span>Ver noticia completa</span>
                 </div>
               </div>
@@ -132,11 +128,10 @@ export const ArticleCarousel: React.FC = () => {
         ))}
       </div>
 
-      {/* Subtle indicator of more items */}
       <div className="flex justify-center mt-4 md:hidden">
         <div className="flex gap-1.5">
           {articles.map((_, i) => (
-            <div key={i} className="w-1.5 h-1.5 rounded-full bg-black/10"></div>
+            <div key={i} className="w-1.5 h-1.5 rounded-full bg-black/10 dark:bg-white/10"></div>
           ))}
         </div>
       </div>
