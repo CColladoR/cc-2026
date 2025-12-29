@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página no encontrada | Christian Collado</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .mesh-gradient {
+            background: radial-gradient(at 0% 0%, hsla(253,16%,95%,1) 0, transparent 50%), 
+                        radial-gradient(at 100% 0%, hsla(225,39%,90%,0.4) 0, transparent 50%),
+                        radial-gradient(at 50% 100%, hsla(339,49%,95%,0.3) 0, transparent 50%);
+        }
+    </style>
+    <script>
+        // Redirección simple al inicio si se intenta acceder a una ruta inexistente
+        // Útil para despliegues en subdirectorios de GH Pages
+        window.location.href = "/";
+    </script>
+</head>
+<body class="mesh-gradient min-h-screen flex items-center justify-center font-sans">
+    <div class="text-center p-8 bg-white/40 backdrop-blur-xl border border-white/60 rounded-[2.5rem] shadow-2xl max-w-md">
+        <h1 class="text-6xl font-black text-black mb-4">404</h1>
+        <p class="text-black/60 font-medium mb-8 uppercase tracking-widest text-xs">Parece que te has perdido</p>
+        <a href="/" class="inline-block px-8 py-4 bg-black text-white text-[10px] font-black uppercase tracking-[0.2em] rounded-full hover:bg-indigo-600 transition-all">
+            Volver al inicio
+        </a>
+    </div>
+</body>
+</html>

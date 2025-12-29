@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christian Collado | Periodista Tecnológico</title>
+    
+    <!-- Metaetiquetas SEO -->
+    <meta name="description" content="Portfolio profesional de Christian Collado, periodista de tecnología con más de 9 años de experiencia y Director de Andro4all.">
+    <meta name="keywords" content="Christian Collado, Andro4all, Periodista Tecnología, Android, Reviews, La Razón, La Vanguardia">
+    <meta name="author" content="Christian Collado">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ccollador.github.io/">
+    <meta property="og:title" content="Christian Collado | Periodista Tecnológico">
+    <meta property="og:description" content="Director de Andro4all y periodista tecnológico con más de 12.000 artículos publicados.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/CColladoR/profilepic/main/christian.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://ccollador.github.io/">
+    <meta property="twitter:title" content="Christian Collado | Periodista Tecnológico">
+    <meta property="twitter:description" content="Director de Andro4all y periodista tecnológico con más de 12.000 artículos publicados.">
+    <meta property="twitter:image" content="https://raw.githubusercontent.com/CColladoR/profilepic/main/christian.jpg">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fafafa;
+            color: #111111;
+            overflow-x: hidden;
+        }
+        .liquid-glass {
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(24px) saturate(210%);
+            -webkit-backdrop-filter: blur(24px) saturate(210%);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 
+                0 4px 24px -1px rgba(0, 0, 0, 0.03),
+                0 10px 40px -10px rgba(0, 0, 0, 0.05);
+        }
+        .mesh-gradient {
+            background: radial-gradient(at 0% 0%, hsla(253,16%,95%,1) 0, transparent 50%), 
+                        radial-gradient(at 100% 0%, hsla(225,39%,90%,0.4) 0, transparent 50%),
+                        radial-gradient(at 50% 100%, hsla(339,49%,95%,0.3) 0, transparent 50%);
+        }
+        .liquid-aura {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: -1;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+        @keyframes float {
+            0% { transform: translate(-10%, -10%) scale(1); }
+            100% { transform: translate(10%, 10%) scale(1.1); }
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .reveal-text {
+            animation: reveal 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+        }
+        @keyframes reveal {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes title-reveal {
+            0% { 
+                opacity: 0; 
+                transform: translateY(24px); 
+                filter: blur(8px);
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateY(0); 
+                filter: blur(0);
+            }
+        }
+        .title-reveal {
+            opacity: 0;
+            animation: title-reveal 1.2s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+            animation-delay: 0.2s;
+        }
+
+        .animate-bounce-slow {
+            animation: bounce-slow 4s infinite ease-in-out;
+        }
+        @keyframes bounce-slow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Cinematic Mask for Image */
+        .image-soft-mask {
+            mask-image: radial-gradient(circle at 50% 40%, black 70%, transparent 100%);
+            -webkit-mask-image: radial-gradient(circle at 50% 40%, black 70%, transparent 100%);
+        }
+
+        .liquid-border-glow {
+            box-shadow: 
+                0 0 0 1px rgba(255, 255, 255, 0.4),
+                inset 0 0 20px rgba(255, 255, 255, 0.2),
+                0 30px 60px -12px rgba(30, 58, 138, 0.25); /* Accent blue from suit */
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "vite": "https://esm.sh/vite@^7.3.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="mesh-gradient min-h-screen">
+    <div id="root"></div>
+    <!-- Punto de entrada para Vite -->
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
