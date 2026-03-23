@@ -78,7 +78,13 @@ const App: React.FC = () => {
               
               <h1 className="text-6xl md:text-9xl font-black tracking-tighter text-black dark:text-white leading-none mb-10">
                 Soy<br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-black via-black/80 to-black/60 dark:from-white dark:via-white/80 dark:to-white/60">Christian</span>
+                <div className="flex items-center gap-4 md:inline-flex">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-black via-black/80 to-black/60 dark:from-white dark:via-white/80 dark:to-white/60">Christian</span>
+                  {/* Avatar compacto solo para móviles */}
+                  <div className="md:hidden w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-2 border-indigo-600/10 shadow-lg rotate-3 transform-gpu shrink-0">
+                    <img src={profileImageUrl} alt="" className="w-full h-full object-cover" />
+                  </div>
+                </div>
               </h1>
             </header>
             
@@ -94,7 +100,7 @@ const App: React.FC = () => {
                 </div>
                 <div className="space-y-3">
                   <h3 className="text-[10px] uppercase tracking-[0.3em] font-black text-indigo-700 dark:text-indigo-400">Experiencia</h3>
-                  <p className="text-base text-black/70 dark:text-white/70">Más de 9 años y 12.000 artículos analizando el mundo tecnológico desde dentro.</p>
+                  <p className="text-base text-black/70 dark:text-white/70">Más de 10 años y 12.000 artículos analizando el mundo tecnológico desde dentro.</p>
                 </div>
               </div>
               
@@ -106,7 +112,8 @@ const App: React.FC = () => {
         </section>
 
         <aside className="lg:col-span-5 flex flex-col gap-8 reveal-text" style={{ animationDelay: '0.1s' }}>
-          <div className="relative rounded-[2.5rem] overflow-hidden bg-white dark:bg-white/5 border border-black/5 dark:border-white/5 aspect-[4/5] transform-gpu shadow-xl shadow-black/[0.02]">
+          {/* Tarjeta de imagen grande solo visible en tablets/escritorio */}
+          <div className="hidden md:block relative rounded-[2.5rem] overflow-hidden bg-white dark:bg-white/5 border border-black/5 dark:border-white/5 aspect-[4/5] transform-gpu shadow-xl shadow-black/[0.02]">
             <img 
               src={profileImageUrl} 
               alt="Retrato de Christian Collado" 

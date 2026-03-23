@@ -33,7 +33,6 @@
     </script>
     <script>
         // Initialize theme before page render to avoid flash. 
-        // Default is now DARK unless 'light' is explicitly saved.
         if (localStorage.theme === 'light') {
             document.documentElement.classList.remove('dark')
         } else {
@@ -47,6 +46,8 @@
     <style>
         :root {
             --scroll-y: 0;
+            --mouse-x: 50%;
+            --mouse-y: 50%;
         }
         html {
             scroll-behavior: smooth;
@@ -70,7 +71,6 @@
             color: #f0f0f0;
         }
 
-        /* High-Key Liquid Glass Effect for Light Mode */
         .liquid-glass {
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(20px);
@@ -82,6 +82,7 @@
             will-change: transform;
             transform: translateZ(0);
             backface-visibility: hidden;
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
         }
 
         .dark .liquid-glass {
@@ -90,6 +91,13 @@
             box-shadow: 
                 0 10px 30px -10px rgba(0, 0, 0, 0.5),
                 inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+        }
+
+        .liquid-glass:hover {
+            border-color: rgba(99, 102, 241, 0.2);
+        }
+        .dark .liquid-glass:hover {
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         .mesh-gradient {
@@ -122,8 +130,17 @@
         }
 
         @keyframes float {
-            0% { transform: translate3d(-2%, -2%, 0); }
-            100% { transform: translate3d(2%, 2%, 0); }
+            0% { transform: translate3d(-2%, -2%, 0) scale(1); }
+            100% { transform: translate3d(2%, 2%, 0) scale(1.05); }
+        }
+
+        @keyframes liquid-pulse {
+            0%, 100% { transform: scale(1) translate3d(0,0,0); }
+            50% { transform: scale(1.1) translate3d(2%,2%,0); }
+        }
+
+        .liquid-element-pulse {
+            animation: liquid-pulse 8s infinite ease-in-out;
         }
 
         .image-soft-mask {
@@ -144,7 +161,6 @@
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* Smooth scroll optimization */
         @media (prefers-reduced-motion: no-preference) {
           :root {
             scroll-behavior: smooth;
@@ -163,13 +179,11 @@
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
 </head>
 <body class="mesh-gradient min-h-screen">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
     <script>
-        // Performance optimized scroll listener
         let ticking = false;
         let lastScrollY = window.scrollY;
 
@@ -182,6 +196,14 @@
                 });
                 ticking = true;
             }
+        }, { passive: true });
+
+        // Mouse tracking for spotlight effect
+        window.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth) * 100;
+            const y = (e.clientY / window.innerHeight) * 100;
+            document.documentElement.style.setProperty('--mouse-x', x + '%');
+            document.documentElement.style.setProperty('--mouse-y', y + '%');
         }, { passive: true });
     </script>
 </body>

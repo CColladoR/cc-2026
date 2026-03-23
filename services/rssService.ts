@@ -1,7 +1,7 @@
 
 import { RSSResponse, Article } from '../types';
 
-const RSS_FEED_URL = 'https://andro4all.com/author/christian-collado/feed';
+const RSS_FEED_URL = 'https://rss.app/feeds/Yi3mY5gGVxpTt637.xml';
 const PROXY_URL = 'https://api.rss2json.com/v1/api.json?rss_url=';
 
 /**
