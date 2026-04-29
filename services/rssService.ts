@@ -1,7 +1,7 @@
 
 import { RSSResponse, Article } from '../types';
 
-const RSS_FEED_URL = 'https://rss.app/feeds/Yi3mY5gGVxpTt637.xml';
+const RSS_FEED_URL = 'https://www.siftrss.com/f/vQbz717GWQ';
 const PROXY_URL = 'https://api.rss2json.com/v1/api.json?rss_url=';
 
 /**
@@ -11,32 +11,28 @@ const PROXY_URL = 'https://api.rss2json.com/v1/api.json?rss_url=';
 const extractPrimaryImage = (htmlContent: string): string | null => {
   if (!htmlContent) return null;
   
-  // Expresión regular para encontrar el src de una imagen con la clase específica
-  // Soporta comillas simples o dobles y variaciones de orden en los atributos
-  const regex = /<img[^>]+class=['"][^'"]*type:primaryImage[^'"]*['"][^>]+src=['"]([^'"]+)['"]/i;
-  const match = htmlContent.match(regex);
-  
-  if (match && match[1]) {
-    return match[1];
-  }
+  // 1. Buscar imagen con clase type:primaryImage (común en Andro4all)
+  const primaryRegex = /<img[^>]+class=['"][^'"]*type:primaryImage[^'"]*['"][^>]+src=['"]([^'"]+)['"]/i;
+  const primaryMatch = htmlContent.match(primaryRegex);
+  if (primaryMatch && primaryMatch[1]) return primaryMatch[1];
 
-  // Fallback: buscar cualquier imagen si la anterior falla
-  const fallbackRegex = /<img[^>]+src=['"]([^'"]+)['"]/i;
-  const fallbackMatch = htmlContent.match(fallbackRegex);
-  return fallbackMatch ? fallbackMatch[1] : null;
+  // 2. Buscar cualquier imagen en el contenido
+  const genericRegex = /<img[^>]+src=['"]([^'"]+)['"]/i;
+  const genericMatch = htmlContent.match(genericRegex);
+  if (genericMatch && genericMatch[1]) return genericMatch[1];
+  
+  return null;
 };
 
 export const fetchLatestArticles = async (limit: number = 5): Promise<Article[]> => {
   try {
-    // Generamos un timestamp para forzar la actualización y saltarnos la caché del proxy
-    const timestamp = Date.now();
-    // Añadimos el parámetro al feed original para que el proxy no use su propia caché
-    const targetUrlWithBuster = `${RSS_FEED_URL}?t=${timestamp}`;
+    // Usamos el Proxy de rss2json de forma más directa
+    const response = await fetch(`${PROXY_URL}${encodeURIComponent(RSS_FEED_URL)}&api_key=`); // api_key vacía usa el plan gratuito
     
-    // Realizamos la petición añadiendo también un parámetro nocache a la API del proxy
-    const response = await fetch(`${PROXY_URL}${encodeURIComponent(targetUrlWithBuster)}&nocache=${timestamp}`);
-    
-    if (!response.ok) throw new Error('Failed to fetch articles');
+    if (!response.ok) {
+      console.warn('RSS Fetch failed, status:', response.status);
+      return [];
+    }
     
     const data: RSSResponse = await response.json();
     
@@ -45,14 +41,15 @@ export const fetchLatestArticles = async (limit: number = 5): Promise<Article[]>
        return [];
     }
 
-    // Procesar artículos para asegurar que tenemos la imagen correcta y datos actualizados
+    // El feed de SiftRSS ya viene filtrado, así que mapeamos directamente
     const processedArticles = data.items.map(article => {
-      // Buscamos la imagen en 'content' o 'description' (rss2json suele mapear CDATA aquí)
-      const extractedImg = extractPrimaryImage(article.content) || extractPrimaryImage(article.description);
+      // Extraer imagen del contenido o descripción
+      const extractedImg = extractPrimaryImage(article.content) || 
+                           extractPrimaryImage(article.description);
       
       return {
         ...article,
-        thumbnail: extractedImg || article.thumbnail // Preferimos la extraída específicamente
+        thumbnail: extractedImg || article.thumbnail || (article.enclosure?.link) || ''
       };
     });
 

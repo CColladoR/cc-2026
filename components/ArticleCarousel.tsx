@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { fetchLatestArticles } from '../services/rssService';
 import { Article } from '../types';
+import { FALLBACK_ARTICLES } from '../constants';
 import { ChevronLeft, ChevronRight, ArrowUpRight } from 'lucide-react';
 
 export const ArticleCarousel: React.FC = () => {
@@ -11,9 +12,20 @@ export const ArticleCarousel: React.FC = () => {
 
   useEffect(() => {
     const load = async () => {
-      const data = await fetchLatestArticles(5);
-      setArticles(data);
-      setLoading(false);
+      try {
+        const data = await fetchLatestArticles(5);
+        if (data && data.length > 0) {
+          setArticles(data);
+        } else {
+          // Si no hay artículos del RSS, usamos los de respaldo
+          setArticles(FALLBACK_ARTICLES);
+        }
+      } catch (error) {
+        console.error("Error loading articles, using fallback:", error);
+        setArticles(FALLBACK_ARTICLES);
+      } finally {
+        setLoading(false);
+      }
     };
     load();
   }, []);
