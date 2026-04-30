@@ -100,7 +100,7 @@ const App: React.FC = () => {
                 </div>
                 <div className="space-y-3">
                   <h3 className="text-[10px] uppercase tracking-[0.3em] font-black text-indigo-700 dark:text-indigo-400">Experiencia</h3>
-                  <p className="text-base text-black/70 dark:text-white/70">Más de 10 años y 12.000 artículos analizando el mundo tecnológico desde dentro.</p>
+                  <p className="text-base text-black/70 dark:text-white/70">Más de 10 años y 13.000 artículos analizando el mundo tecnológico desde dentro.</p>
                 </div>
               </div>
               
@@ -123,7 +123,7 @@ const App: React.FC = () => {
           </div>
 
           <LiquidCard className="flex flex-col items-center justify-center py-12 text-center">
-            <div className="text-7xl md:text-9xl font-black text-black dark:text-white tracking-tighter mb-2" aria-label="Más de doce mil artículos publicados">+12k</div>
+            <div className="text-7xl md:text-9xl font-black text-black dark:text-white tracking-tighter mb-2" aria-label="Más de trece mil artículos publicados">+12k</div>
             <h3 className="text-[10px] uppercase tracking-[0.4em] font-black text-black/60 dark:text-white/60">Artículos Publicados</h3>
           </LiquidCard>
 
