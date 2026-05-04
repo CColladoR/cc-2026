@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { LiquidCard } from './components/LiquidCard';
 import { SocialLinks } from './components/SocialLinks';
 import { ArticleCarousel } from './components/ArticleCarousel';
@@ -167,6 +168,7 @@ const App: React.FC = () => {
           </p>
         </div>
       </footer>
+      <Analytics />
     </div>
   );
 };
